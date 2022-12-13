@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:new_app/core/helpers/asset_helper.dart';
 import 'package:new_app/core/helpers/image_helper.dart';
+import 'package:new_app/core/helpers/local_storage_helper.dart';
 import 'package:new_app/representation/screen/intro_screen.dart';
+import 'package:new_app/representation/screen/main_app.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -20,9 +22,16 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void redirectIntroState() async {
+    final ignoreIntroScreen =
+        LocalStorageHelper.getValue('ignoreIntroScreen') as bool?;
     await Future.delayed(const Duration(seconds: 5));
-    // ignore: use_build_context_synchronously
-    Navigator.of(context).pushNamed(IntroScreen.routeName);
+    if (ignoreIntroScreen != null && ignoreIntroScreen) {
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushNamed(MainApp.routeName);
+    } else {
+      LocalStorageHelper.setValue('ignoreIntroScreen', true);
+      Navigator.of(context).pushNamed(IntroScreen.routeName);
+    }
   }
 
   @override
