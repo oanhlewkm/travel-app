@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_app/representation/widgets/app_bar_container_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,9 +11,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Profile'),
+    return AppBarContainerWidge(
+      child: Container(
+        color: Colors.amber,
       ),
     );
   }
