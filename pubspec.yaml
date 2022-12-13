@@ -39,6 +39,8 @@ dependencies:
   flutter_svg: ^1.1.6
   smooth_page_indicator: ^1.0.0+2
   hive_flutter: ^1.1.0
+  salomon_bottom_bar: ^3.3.1
+  font_awesome_flutter: ^10.3.0
 
 dev_dependencies:
   flutter_test:
