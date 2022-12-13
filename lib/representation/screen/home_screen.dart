@@ -12,6 +12,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return AppBarContainerWidge(
+      titleString: 'tada',
+      implementLeading: true,
       child: Container(
         color: Colors.amber,
       ),

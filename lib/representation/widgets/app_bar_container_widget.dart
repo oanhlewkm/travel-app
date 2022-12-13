@@ -36,16 +36,16 @@ class AppBarContainerWidge extends StatelessWidget {
                     children: [
                       if (implementLeading)
                         Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(kDefaultPadding),
-                            ),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(kDefaultPadding),
+                            color: Colors.white,
                           ),
-                          color: Colors.white,
+                          padding: const EdgeInsets.all(kItemPadding),
                           child: const Icon(
-                            FontAwesomeIcons.backward,
+                            FontAwesomeIcons.arrowLeft,
+                            size: kDefaultPadding,
                             color: Colors.black,
-                            size: kDefaultIconSize,
                           ),
                         ),
                       Expanded(
