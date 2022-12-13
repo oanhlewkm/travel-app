@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:new_app/core/constants/color_palatte.dart';
 import 'package:new_app/representation/screen/slpash_screen.dart';
 import 'package:new_app/routes.dart';
 
-void main() {
+const travelBox = 'travel_app';
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox<String>(travelBox);
+
   runApp(const MyApp());
 }
 
