@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return AppBarContainerWidge(
       title: Padding(
-        padding: EdgeInsets.all(kMediumPadding),
+        padding: const EdgeInsets.all(kMediumPadding),
         child: Row(
           children: [
             Column(
@@ -67,7 +67,37 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      child: Container(),
+      child: Column(
+        children: const [
+          TextField(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              hintText: 'Search your destination...',
+              prefixIcon: Padding(
+                padding: EdgeInsets.all(kTopPadding),
+                child: Icon(
+                  FontAwesomeIcons.magnifyingGlass,
+                  color: Colors.black,
+                  size: kDefaultIconSize,
+                ),
+              ),
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kItemPadding),
+                ),
+              ),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: kItemPadding,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: kItemPadding,
+          )
+        ],
+      ),
     );
   }
 }
