@@ -12,12 +12,14 @@ class AppBarContainerWidge extends StatelessWidget {
     this.title,
     this.titleString,
     this.implementLeading = false,
+    this.implementTraling = false,
   });
 
   final Widget child;
   final Widget? title;
   final String? titleString;
   final bool implementLeading;
+  final bool implementTraling;
 
   @override
   Widget build(BuildContext context) {
@@ -49,19 +51,34 @@ class AppBarContainerWidge extends StatelessWidget {
                           ),
                         ),
                       Expanded(
-                          child: Center(
-                        child: Column(
-                          children: [
-                            Text(
-                              titleString ?? '',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Text(
+                                titleString ?? '',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ))
+                      ),
+                      if (implementTraling)
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(kDefaultPadding),
+                            color: Colors.white,
+                          ),
+                          padding: const EdgeInsets.all(kItemPadding),
+                          child: const Icon(
+                            FontAwesomeIcons.bars,
+                            size: kDefaultPadding,
+                            color: Colors.black,
+                          ),
+                        )
                     ],
                   ),
               backgroundColor: ColorPalette.backgroundScaffoldColor,
