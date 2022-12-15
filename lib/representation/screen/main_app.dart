@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:new_app/core/constants/color_palatte.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
-import 'package:new_app/representation/screen/booking_screen.dart';
+import 'package:new_app/representation/screen/hotel_booking_screen.dart';
 import 'package:new_app/representation/screen/favorites_screen.dart';
 import 'package:new_app/representation/screen/home_screen.dart';
 import 'package:new_app/representation/screen/profile_screen.dart';
@@ -29,7 +29,7 @@ class _MainAppState extends State<MainApp> {
         children: const [
           HomeScreen(),
           FavoriteScreen(),
-          BookingScreen(),
+          HotelBookingScreen(),
           ProfileScreen(),
         ],
       ),
