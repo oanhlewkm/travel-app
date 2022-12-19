@@ -1,9 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
 import 'package:new_app/core/helpers/asset_helper.dart';
-import 'package:new_app/representation/screens/guest_and_room_screen.dart';
 import 'package:new_app/representation/screens/select_date_screen.dart';
 import 'package:new_app/representation/widgets/app_bar_container_widget.dart';
 import 'package:new_app/representation/widgets/button_widget.dart';
@@ -21,7 +18,6 @@ class HotelBookingScreen extends StatefulWidget {
 
 class _HotelBookingScreenState extends State<HotelBookingScreen> {
   String? selectDate;
-  String? guestAndRoom;
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +46,7 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> {
                   onTap: () async {
                     final result = await Navigator.of(context)
                         .pushNamed(SelectDateScreen.routeName);
-                    if (result != null &&
-                        !(result as List<DateTime?>)
-                            .any((element) => element == null)) {
+                    if (result is List<DateTime?>) {
                       selectDate =
                           '${result[0]?.getStartDate} - ${result[1]?.getEndDate}';
                       setState(() {});
@@ -64,21 +58,11 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> {
             const SizedBox(
               height: kMediumPadding,
             ),
-            StatefulBuilder(builder: ((context, setState) {
-              return ItemBookingWidget(
-                icon: AssetHelper.icoBed,
-                title: 'Guest and Room',
-                description: guestAndRoom ?? "1 Guest, 1 Room",
-                onTap: () async {
-                  final result = await Navigator.of(context)
-                      .pushNamed(GuestAndRoomScreen.routeName);
-                  if (result is List<int>) {
-                    guestAndRoom = '${result[0]} Guest, ${result[1]} Room';
-                    setState(() {});
-                  }
-                },
-              );
-            })),
+            const ItemBookingWidget(
+              icon: AssetHelper.icoBed,
+              title: 'Guest and Room',
+              description: "2 Guest, 1 Room",
+            ),
             const SizedBox(
               height: kMediumPadding,
             ),
