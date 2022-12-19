@@ -15,10 +15,10 @@ class ItemGuestAndRoom extends StatefulWidget {
   final int initData;
 
   @override
-  State<ItemGuestAndRoom> createState() => _ItemGuestAndRoomState();
+  State<ItemGuestAndRoom> createState() => ItemGuestAndRoomState();
 }
 
-class _ItemGuestAndRoomState extends State<ItemGuestAndRoom> {
+class ItemGuestAndRoomState extends State<ItemGuestAndRoom> {
   late final TextEditingController _textEditingController;
   final FocusNode _focusNode = FocusNode();
   late int number;
@@ -36,71 +36,79 @@ class _ItemGuestAndRoomState extends State<ItemGuestAndRoom> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(kMediumPadding),
-        margin: const EdgeInsets.only(bottom: kMediumPadding),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(
-            Radius.circular(kItemPadding),
-          ),
-        ),
-        child: Row(
-          children: [
-            ImageHelper.loadFromAsset(widget.icon, width: 36, height: 36),
-            const SizedBox(
-              width: kItemPadding,
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return Container(
+          padding: const EdgeInsets.all(kMediumPadding),
+          margin: const EdgeInsets.only(bottom: kMediumPadding),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(kItemPadding),
             ),
-            Text(widget.title),
-            const Spacer(),
-            GestureDetector(
-              onTap: () {
-                if (number > 1) {
+          ),
+          child: Row(
+            children: [
+              ImageHelper.loadFromAsset(widget.icon, width: 36, height: 36),
+              const SizedBox(
+                width: kItemPadding,
+              ),
+              Text(widget.title),
+              const Spacer(),
+              GestureDetector(
+                onTap: () {
+                  if (number > 1) {
+                    setState(() {
+                      number--;
+                      _textEditingController.text = number.toString();
+                      if (_focusNode.hasFocus) {
+                        _focusNode.unfocus();
+                      }
+                    });
+                  }
+                },
+                child: ImageHelper.loadFromAsset(AssetHelper.icoDecre),
+              ),
+              Container(
+                height: 35,
+                width: 60,
+                padding: const EdgeInsets.only(left: 3),
+                alignment: Alignment.center,
+                child: TextField(
+                  controller: _textEditingController,
+                  focusNode: _focusNode,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    contentPadding: EdgeInsets.only(bottom: 18),
+                  ),
+                  autocorrect: true,
+                  minLines: 1,
+                  maxLines: 1,
+                  keyboardType: TextInputType.number,
+                  enabled: true,
+                  onChanged: (value) {},
+                  onSubmitted: (String submitValue) {},
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
                   setState(() {
-                    number--;
+                    number++;
                     _textEditingController.text = number.toString();
                     if (_focusNode.hasFocus) {
                       _focusNode.unfocus();
                     }
                   });
-                }
-              },
-              child: ImageHelper.loadFromAsset(AssetHelper.icoDecre),
-            ),
-            Container(
-              height: 35,
-              width: 60,
-              padding: const EdgeInsets.only(left: 3),
-              alignment: Alignment.center,
-              child: TextField(
-                controller: _textEditingController,
-                focusNode: _focusNode,
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  contentPadding: EdgeInsets.only(bottom: 18),
-                ),
-                autocorrect: true,
-                minLines: 1,
-                maxLines: 1,
-                keyboardType: TextInputType.number,
-                enabled: true,
-                onChanged: (value) {},
-                onSubmitted: (String submitValue) {},
+                },
+                child: ImageHelper.loadFromAsset(AssetHelper.icoIncre),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  number++;
-                  _textEditingController.text = number.toString();
-                });
-              },
-              child: ImageHelper.loadFromAsset(AssetHelper.icoIncre),
-            ),
-          ],
-        ));
+            ],
+          ),
+        );
+      },
+    );
   }
 }

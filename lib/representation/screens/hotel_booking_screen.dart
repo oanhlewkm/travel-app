@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
 import 'package:new_app/core/helpers/asset_helper.dart';
@@ -66,13 +68,14 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> {
               return ItemBookingWidget(
                 icon: AssetHelper.icoBed,
                 title: 'Guest and Room',
-                description: guestAndRoom ?? "2 Guest, 1 Room",
+                description: guestAndRoom ?? "1 Guest, 1 Room",
                 onTap: () async {
-                  // final result =
-                  Navigator.of(context).pushNamed(GuestAndRoomScreen.routeName);
-                  // if (guestAndRoom != null) {
-                  //   setState(() => {guestAndRoom = result.toString()});
-                  // }
+                  final result = await Navigator.of(context)
+                      .pushNamed(GuestAndRoomScreen.routeName);
+                  if (result is List<int>) {
+                    guestAndRoom = '${result[0]} Guest, ${result[1]} Room';
+                    setState(() {});
+                  }
                 },
               );
             })),
