@@ -37,17 +37,22 @@ class AppBarContainerWidge extends StatelessWidget {
                   Row(
                     children: [
                       if (implementLeading)
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(kDefaultPadding),
-                            color: Colors.white,
-                          ),
-                          padding: const EdgeInsets.all(kItemPadding),
-                          child: const Icon(
-                            FontAwesomeIcons.arrowLeft,
-                            size: kDefaultPadding,
-                            color: Colors.black,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(kDefaultPadding),
+                              color: Colors.white,
+                            ),
+                            padding: const EdgeInsets.all(kItemPadding),
+                            child: const Icon(
+                              FontAwesomeIcons.arrowLeft,
+                              size: kDefaultPadding,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       Expanded(
