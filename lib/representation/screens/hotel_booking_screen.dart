@@ -5,6 +5,7 @@ import 'package:new_app/representation/screens/select_date_screen.dart';
 import 'package:new_app/representation/widgets/app_bar_container_widget.dart';
 import 'package:new_app/representation/widgets/button_widget.dart';
 import 'package:new_app/representation/widgets/item_booking_widget.dart';
+import 'package:new_app/core/extensions/date_ext.dart';
 
 class HotelBookingScreen extends StatefulWidget {
   const HotelBookingScreen({super.key});
@@ -16,6 +17,8 @@ class HotelBookingScreen extends StatefulWidget {
 }
 
 class _HotelBookingScreenState extends State<HotelBookingScreen> {
+  String? selectDate;
+
   @override
   Widget build(BuildContext context) {
     return AppBarContainerWidge(
@@ -34,12 +37,22 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> {
             const SizedBox(
               height: kMediumPadding,
             ),
-            ItemBookingWidget(
-              icon: AssetHelper.icoCalendal,
-              title: 'Select Date',
-              description: "13 Feb - 18 Feb 2021",
-              onTap: () {
-                Navigator.of(context).pushNamed(SelectDateScreen.routeName);
+            StatefulBuilder(
+              builder: (context, setState) {
+                return ItemBookingWidget(
+                  icon: AssetHelper.icoCalendal,
+                  title: 'Select Date',
+                  description: selectDate ?? 'Select Date',
+                  onTap: () async {
+                    final result = await Navigator.of(context)
+                        .pushNamed(SelectDateScreen.routeName);
+                    if (result is List<DateTime?>) {
+                      selectDate =
+                          '${result[0]?.getStartDate} - ${result[1]?.getEndDate}';
+                      setState(() {});
+                    }
+                  },
+                );
               },
             ),
             const SizedBox(

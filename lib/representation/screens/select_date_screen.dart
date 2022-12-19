@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_app/core/constants/color_palatte.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
-import 'package:new_app/representation/screens/hotel_booking_screen.dart';
 import 'package:new_app/representation/widgets/app_bar_container_widget.dart';
 import 'package:new_app/representation/widgets/button_widget.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -10,16 +9,14 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 class SelectDateScreen extends StatelessWidget {
   SelectDateScreen({super.key});
 
-  static const routeName = '/select_date_screen';
+  static const String routeName = '/select_date_screen';
 
   DateTime? rangeStartDate;
   DateTime? rangeEndDate;
-
   @override
   Widget build(BuildContext context) {
     return AppBarContainerWidge(
       titleString: 'Select date',
-      implementLeading: true,
       child: Column(
         children: [
           const SizedBox(
@@ -34,20 +31,21 @@ class SelectDateScreen extends StatelessWidget {
             selectionColor: ColorPalette.yellowColor,
             startRangeSelectionColor: ColorPalette.yellowColor,
             endRangeSelectionColor: ColorPalette.yellowColor,
-            rangeSelectionColor: ColorPalette.yellowColor.withOpacity(0.2),
+            rangeSelectionColor: ColorPalette.yellowColor.withOpacity(0.25),
             toggleDaySelection: true,
             todayHighlightColor: ColorPalette.yellowColor,
-            onSelectionChanged: (DateRangePickerSelectionChangedArgs agrs) {
-              if (agrs is PickerDateRange) {
-                rangeStartDate = agrs.value.startDate;
-                rangeEndDate = agrs.value.endDate;
+            enablePastDates: false,
+            onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+              if (args.value is PickerDateRange) {
+                rangeStartDate = args.value.startDate;
+                rangeEndDate = args.value.endDate;
               }
             },
           ),
           ButtonWidget(
             title: 'Select',
             ontap: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).pop([rangeStartDate, rangeEndDate]);
             },
           ),
           const SizedBox(

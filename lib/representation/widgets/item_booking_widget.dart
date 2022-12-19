@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
-import 'package:new_app/core/helpers/asset_helper.dart';
 import 'package:new_app/core/helpers/image_helper.dart';
 
 class ItemBookingWidget extends StatelessWidget {
