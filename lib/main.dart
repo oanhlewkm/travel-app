@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:new_app/core/constants/color_palatte.dart';
 import 'package:new_app/core/helpers/local_storage_helper.dart';
+import 'package:new_app/core/helpers/size_config.dart';
 import 'package:new_app/representation/screens/slpash_screen.dart';
 import 'package:new_app/routes.dart';
 
@@ -26,7 +27,13 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       routes: routes,
-      home: const SplashScreen(),
+      onGenerateRoute: generateRoutes,
+      home: Builder(
+        builder: (context) {
+          SizeConfig.init(context);
+          return const SplashScreen();
+        },
+      ),
     );
   }
 }

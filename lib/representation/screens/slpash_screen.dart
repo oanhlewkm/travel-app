@@ -30,6 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).pushNamed(MainApp.routeName);
     } else {
       LocalStorageHelper.setValue('ignoreIntroScreen', true);
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushNamed(IntroScreen.routeName);
     }
   }

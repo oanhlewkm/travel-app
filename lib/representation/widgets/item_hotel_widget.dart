@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_app/core/constants/color_palatte.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
-import 'package:new_app/core/constants/textstyle_ext.dart';
 import 'package:new_app/core/helpers/asset_helper.dart';
 import 'package:new_app/core/helpers/image_helper.dart';
 import 'package:new_app/data/models/hotel_model.dart';

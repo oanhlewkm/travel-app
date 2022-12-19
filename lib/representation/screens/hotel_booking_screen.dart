@@ -10,9 +10,11 @@ import 'package:new_app/representation/widgets/item_booking_widget.dart';
 import 'package:new_app/core/extensions/date_ext.dart';
 
 class HotelBookingScreen extends StatefulWidget {
-  const HotelBookingScreen({super.key});
+  const HotelBookingScreen({super.key, this.destination});
 
   static const String routeName = '/hotel_booking_screen';
+
+  final String? destination;
 
   @override
   State<HotelBookingScreen> createState() => _HotelBookingScreenState();
@@ -33,10 +35,10 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> {
             const SizedBox(
               height: kMediumPadding * 2,
             ),
-            const ItemBookingWidget(
+            ItemBookingWidget(
               icon: AssetHelper.icoLocation,
               title: 'Destination',
-              description: "Vietnam",
+              description: widget.destination ?? "Vietnam",
             ),
             const SizedBox(
               height: kMediumPadding,
