@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:new_app/core/constants/color_palatte.dart';
 import 'package:new_app/core/helpers/local_storage_helper.dart';
-import 'package:new_app/representation/screen/slpash_screen.dart';
+import 'package:new_app/representation/screens/slpash_screen.dart';
 import 'package:new_app/routes.dart';
 
 void main() async {
