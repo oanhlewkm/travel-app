@@ -5,7 +5,7 @@ import 'package:new_app/core/constants/dimension_constants.dart';
 import 'package:new_app/core/constants/textstyle_ext.dart';
 import 'package:new_app/core/helpers/image_helper.dart';
 import 'package:new_app/core/helpers/asset_helper.dart';
-import 'package:new_app/representation/screen/main_app.dart';
+import 'package:new_app/representation/screens/main_app.dart';
 import 'package:new_app/representation/widgets/button_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

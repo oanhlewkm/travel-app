@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
 import 'package:new_app/core/helpers/asset_helper.dart';
+import 'package:new_app/representation/screens/select_date_screen.dart';
 import 'package:new_app/representation/widgets/app_bar_container_widget.dart';
 import 'package:new_app/representation/widgets/button_widget.dart';
 import 'package:new_app/representation/widgets/item_booking_widget.dart';
@@ -33,10 +34,13 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> {
             const SizedBox(
               height: kMediumPadding,
             ),
-            const ItemBookingWidget(
+            ItemBookingWidget(
               icon: AssetHelper.icoCalendal,
               title: 'Select Date',
               description: "13 Feb - 18 Feb 2021",
+              onTap: () {
+                Navigator.of(context).pushNamed(SelectDateScreen.routeName);
+              },
             ),
             const SizedBox(
               height: kMediumPadding,

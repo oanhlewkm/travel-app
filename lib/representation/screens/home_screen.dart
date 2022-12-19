@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
-import 'package:new_app/core/constants/textstyle_ext.dart';
 import 'package:new_app/core/helpers/asset_helper.dart';
 import 'package:new_app/core/helpers/image_helper.dart';
-import 'package:new_app/representation/screen/hotel_booking_screen.dart';
+import 'package:new_app/representation/screens/hotel_booking_screen.dart';
 import 'package:new_app/representation/widgets/app_bar_container_widget.dart';
 
 class HomeScreen extends StatefulWidget {
