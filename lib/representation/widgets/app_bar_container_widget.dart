@@ -58,7 +58,7 @@ class AppBarContainerWidge extends StatelessWidget {
                                 titleString ?? '',
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 30,
+                                  fontSize: 20,
                                 ),
                               ),
                             ],
