@@ -1,9 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
 import 'package:new_app/core/helpers/asset_helper.dart';
 import 'package:new_app/representation/screens/guest_and_room_screen.dart';
+import 'package:new_app/representation/screens/hotels_screen.dart';
 import 'package:new_app/representation/screens/select_date_screen.dart';
 import 'package:new_app/representation/widgets/app_bar_container_widget.dart';
 import 'package:new_app/representation/widgets/button_widget.dart';
@@ -11,9 +10,11 @@ import 'package:new_app/representation/widgets/item_booking_widget.dart';
 import 'package:new_app/core/extensions/date_ext.dart';
 
 class HotelBookingScreen extends StatefulWidget {
-  const HotelBookingScreen({super.key});
+  const HotelBookingScreen({super.key, this.destination});
 
   static const String routeName = '/hotel_booking_screen';
+
+  final String? destination;
 
   @override
   State<HotelBookingScreen> createState() => _HotelBookingScreenState();
@@ -26,6 +27,7 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> {
   @override
   Widget build(BuildContext context) {
     return AppBarContainerWidge(
+      implementLeading: true,
       titleString: 'Hotel Booking',
       child: SingleChildScrollView(
         child: Column(
@@ -33,10 +35,10 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> {
             const SizedBox(
               height: kMediumPadding * 2,
             ),
-            const ItemBookingWidget(
+            ItemBookingWidget(
               icon: AssetHelper.icoLocation,
               title: 'Destination',
-              description: "South Korea",
+              description: widget.destination ?? "Vietnam",
             ),
             const SizedBox(
               height: kMediumPadding,
@@ -84,7 +86,9 @@ class _HotelBookingScreenState extends State<HotelBookingScreen> {
             ),
             ButtonWidget(
               title: 'Search',
-              ontap: () {},
+              ontap: () {
+                Navigator.of(context).pushNamed(HotelsScreen.routeName);
+              },
             )
           ],
         ),
