@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:new_app/core/constants/color_palatte.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
+import 'package:new_app/core/constants/textstyle_ext.dart';
 import 'package:new_app/core/helpers/asset_helper.dart';
 import 'package:new_app/core/helpers/image_helper.dart';
 import 'package:new_app/data/models/hotel_model.dart';
+import 'package:new_app/representation/screens/select_room_screen.dart';
+import 'package:new_app/representation/widgets/button_widget.dart';
+import 'package:new_app/representation/widgets/dashline_widget.dart';
+import 'package:new_app/representation/widgets/item_utility_hotel.dart';
 
 class HotelDetailScreen extends StatefulWidget {
   const HotelDetailScreen({super.key, required this.hotelModel});
@@ -114,8 +120,9 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                 widget.hotelModel.hotelName,
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 24,
+                                  fontSize: 20,
                                 ),
+                                maxLines: 1,
                               ),
                               const Spacer(),
                               Text(
@@ -125,8 +132,108 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                   fontSize: 24,
                                 ),
                               ),
+                              const Text(
+                                '/night',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10,
+                                ),
+                              ),
                             ],
-                          )
+                          ),
+                          const SizedBox(
+                            height: kDefaultPadding,
+                          ),
+                          Row(
+                            children: [
+                              ImageHelper.loadFromAsset(
+                                AssetHelper.icoLocationBlank,
+                              ),
+                              const SizedBox(
+                                width: kDefaultPadding,
+                              ),
+                              Text(
+                                widget.hotelModel.location,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: kDefaultPadding,
+                          ),
+                          Row(
+                            children: [
+                              ImageHelper.loadFromAsset(
+                                AssetHelper.icoStar,
+                              ),
+                              const SizedBox(
+                                width: kDefaultPadding,
+                              ),
+                              Text(
+                                '${widget.hotelModel.star}/5',
+                              ),
+                              Text(
+                                ' (${widget.hotelModel.numOfReview} reviews)',
+                                style: const TextStyle(
+                                  color: ColorPalette.subTitleColor,
+                                ),
+                              ),
+                              const Spacer(),
+                              const Text(
+                                'See all',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorPalette.primaryColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const DashlineWidget(
+                            color: ColorPalette.dividerColor,
+                          ),
+                          const Text(
+                            'Information',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          const SizedBox(
+                            height: kItemPadding,
+                          ),
+                          const Text(
+                            '''You will find every comfort because many of the services that the hotel offers for travellers and of course the hotel is very comfortable.''',
+                          ),
+                          const ItemUtilityHotelWidget(),
+                          const SizedBox(
+                            height: kDefaultPadding,
+                          ),
+                          Text(
+                            'Location',
+                            style: TextStyles.defaultStyle.bold,
+                          ),
+                          const SizedBox(
+                            height: kItemPadding,
+                          ),
+                          const Text(
+                            '''Located in the famous neighborhood of Seoul, Grand Luxury’s is set in a building built in the 2010s.''',
+                          ),
+                          const SizedBox(
+                            height: kDefaultPadding,
+                          ),
+                          ImageHelper.loadFromAsset(
+                            AssetHelper.imageMap,
+                            width: double.infinity,
+                          ),
+                          const SizedBox(
+                            height: kMediumPadding,
+                          ),
+                          ButtonWidget(
+                              title: 'Select Room',
+                              ontap: () {
+                                Navigator.of(context)
+                                    .pushNamed(SelectRoomScreen.routeName);
+                              }),
+                          const SizedBox(
+                            height: kMediumPadding,
+                          ),
                         ],
                       ),
                     )

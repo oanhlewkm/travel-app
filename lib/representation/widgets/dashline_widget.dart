@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:new_app/core/constants/color_palatte.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
 
 class DashlineWidget extends StatelessWidget {
-  const DashlineWidget({super.key, this.height = 1, this.color = Colors.black});
+  const DashlineWidget({
+    super.key,
+    this.height = 1,
+    this.color = ColorPalette.dividerColor,
+  });
   final double height;
   final Color color;
   @override
@@ -10,7 +15,7 @@ class DashlineWidget extends StatelessWidget {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         final boxWidth = constraints.constrainWidth();
-        const dashWidth = 10.0;
+        const dashWidth = 6.0;
         final dashHeight = height;
         final dashCount = (boxWidth / (2 * dashWidth)).floor();
         return Padding(
