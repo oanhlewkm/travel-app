@@ -47,7 +47,12 @@ class _SelectRoomScreenState extends State<SelectRoomScreen> {
       implementLeading: true,
       child: SingleChildScrollView(
         child: Column(
-          children: listRoom.map((e) => ItemRoomWidget(roomModel: e)).toList(),
+          children: [
+            const SizedBox(
+              height: kMediumPadding * 2,
+            ),
+            ...listRoom.map((e) => ItemRoomWidget(roomModel: e)).toList()
+          ],
         ),
       ),
     );

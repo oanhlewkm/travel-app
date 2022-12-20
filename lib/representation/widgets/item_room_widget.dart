@@ -3,18 +3,21 @@ import 'package:new_app/core/constants/dimension_constants.dart';
 import 'package:new_app/core/constants/textstyle_ext.dart';
 import 'package:new_app/core/helpers/image_helper.dart';
 import 'package:new_app/data/models/room_model.dart';
+import 'package:new_app/representation/screens/checkout_screen.dart';
 import 'package:new_app/representation/widgets/button_widget.dart';
 import 'package:new_app/representation/widgets/dashline_widget.dart';
 import 'package:new_app/representation/widgets/item_utility_hotel.dart';
 
 class ItemRoomWidget extends StatelessWidget {
-  const ItemRoomWidget({super.key, required this.roomModel});
+  const ItemRoomWidget({super.key, required this.roomModel, this.numberOfRoom});
   final RoomModel roomModel;
+  final int? numberOfRoom;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(kDefaultPadding),
-      margin: const EdgeInsets.only(bottom: kDefaultPadding),
+      margin: const EdgeInsets.only(bottom: kMediumPadding),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(
@@ -86,10 +89,20 @@ class ItemRoomWidget extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: ButtonWidget(
-                  title: 'Choose',
-                  ontap: () {},
-                ),
+                child: numberOfRoom == null
+                    ? ButtonWidget(
+                        title: 'Choose',
+                        ontap: () {
+                          Navigator.of(context).pushNamed(
+                            CheckoutScreen.routeName,
+                            arguments: roomModel,
+                          );
+                        },
+                      )
+                    : Text(
+                        '$numberOfRoom room',
+                        textAlign: TextAlign.end,
+                      ),
               )
             ],
           )
