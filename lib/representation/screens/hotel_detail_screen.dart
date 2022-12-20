@@ -3,10 +3,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
 import 'package:new_app/core/helpers/asset_helper.dart';
 import 'package:new_app/core/helpers/image_helper.dart';
+import 'package:new_app/data/models/hotel_model.dart';
 
 class HotelDetailScreen extends StatefulWidget {
-  const HotelDetailScreen({super.key});
+  const HotelDetailScreen({super.key, required this.hotelModel});
   static const String routeName = '/hotel_detail_screen';
+  final HotelModel hotelModel;
   @override
   State<HotelDetailScreen> createState() => _HotelDetailScreenState();
 }
@@ -105,6 +107,27 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                     Expanded(
                       child: ListView(
                         controller: scrollController,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                widget.hotelModel.hotelName,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                ),
+                              ),
+                              const Spacer(),
+                              Text(
+                                '\$${widget.hotelModel.price}',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
                     )
                   ],
