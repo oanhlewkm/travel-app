@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.all(kDefaultPadding),
               child: Icon(
                 Icons.favorite,
-                color: Colors.grey,
+                color: Colors.red,
               ),
             ),
             Positioned(

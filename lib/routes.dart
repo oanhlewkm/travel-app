@@ -6,6 +6,7 @@ import 'package:new_app/representation/screens/intro_screen.dart';
 import 'package:new_app/representation/screens/main_app.dart';
 import 'package:new_app/representation/screens/select_date_screen.dart';
 import 'package:new_app/representation/screens/slpash_screen.dart';
+import 'representation/screens/hotel_detail_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (context) => const SplashScreen(),
@@ -14,6 +15,7 @@ final Map<String, WidgetBuilder> routes = {
   SelectDateScreen.routeName: (context) => SelectDateScreen(),
   GuestAndRoomScreen.routeName: (context) => const GuestAndRoomScreen(),
   HotelsScreen.routeName: (context) => const HotelsScreen(),
+  HotelDetailScreen.routeName: (context) => const HotelDetailScreen(),
 };
 
 MaterialPageRoute<dynamic>? generateRoutes(RouteSettings settings) {
