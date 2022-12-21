@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:new_app/core/constants/color_palatte.dart';
 import 'package:new_app/core/constants/dimension_constants.dart';
+import 'package:new_app/core/helpers/asset_helper.dart';
+import 'package:new_app/core/helpers/image_helper.dart';
 import 'package:new_app/data/models/room_model.dart';
 import 'package:new_app/representation/widgets/app_bar_container_widget.dart';
+import 'package:new_app/representation/widgets/button_widget.dart';
 import 'package:new_app/representation/widgets/item_room_widget.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -74,6 +79,80 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 
+  Widget _buildItemOptionCheckout(
+    String icon,
+    String title,
+    String value,
+    BuildContext context,
+  ) {
+    return Container(
+      padding: const EdgeInsets.all(kDefaultPadding),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(kItemPadding),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              ImageHelper.loadFromAsset(icon, height: 40, width: 40),
+              const SizedBox(
+                width: kDefaultPadding,
+              ),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: kMediumPadding,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.5,
+            decoration: BoxDecoration(
+              color: ColorPalette.primaryColor.withOpacity(0.15),
+              borderRadius: BorderRadius.circular(40),
+            ),
+            padding: const EdgeInsets.all(kMinPadding),
+            child: Row(
+              children: [
+                Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  margin: const EdgeInsets.all(2),
+                  child: const Icon(
+                    FontAwesomeIcons.plus,
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(
+                  width: kDefaultPadding,
+                ),
+                Text(
+                  value,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: ColorPalette.primaryColor,
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBarContainerWidge(
@@ -102,16 +181,27 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               roomModel: widget.roomModel,
               numberOfRoom: 1,
             ),
-            Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(
-                    kItemPadding,
-                  ),
-                ),
-              ),
-              height: 50,
+            _buildItemOptionCheckout(
+              AssetHelper.icoUser,
+              'Contact Details',
+              'Add Contact',
+              context,
+            ),
+            const SizedBox(
+              height: kDefaultPadding,
+            ),
+            _buildItemOptionCheckout(
+              AssetHelper.icoPromo,
+              'Promo Code',
+              'Add Promo Code',
+              context,
+            ),
+            const SizedBox(
+              height: kDefaultPadding,
+            ),
+            ButtonWidget(
+              title: 'Payment',
+              ontap: () {},
             )
           ],
         ),
